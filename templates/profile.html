@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiCard - View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .profile-image {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .qr-code {
+            margin: 20px 0;
+        }
+        #qrcode {
+            width: 150px;
+            height: 150px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Your DigiCard</h1>
+
+    <!-- Profile Image -->
+    <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-image">
+
+    <!-- Profile Details -->
+    <div class="details">
+        <p><strong>Name:</strong> Supritha D</p>
+        <p><strong>Phone:</strong> +91 8737434783</p>
+        <p><strong>Village:</strong> 123 Street, City, Country</p>
+    </div>
+
+    <!-- QR Code Canvas -->
+    <div class="qr-code">
+        <canvas id="qrcode"></canvas>
+    </div>
+
+    <!-- Print Button -->
+    <button onclick="window.print()">Print DigiCard</button>
+
+    <!-- Dashboard Button -->
+    <a href="{{ url_for('documents') }}" style="text-decoration: none;">
+        <button>Uploaded Documents</button>
+    </a>
+</div>
+
+<!-- QR Code Generator Script -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const name = "Supritha D";
+        const phone = "+91 8737434783";
+        const village = "123 Street, City, Country";
+
+        // Fetch uploaded documents from localStorage
+        const uploadedDocs = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+
+        // Construct the details string for the QR code
+        let details = `Name: ${name}\nPhone: ${phone}\nVillage: ${village}\n\nUploaded Documents:\n`;
+
+        if (uploadedDocs.length > 0) {
+            uploadedDocs.forEach(doc => {
+                // Assuming each document is stored as { name: "Document Name", url: "document_link" }
+                details += `• ${doc.name}: ${window.location.origin}/${doc.url}\n`;
+            });
+        } else {
+            details += 'No documents uploaded.';
+        }
+
+        // Generate QR Code from the details and place it inside the canvas
+        const canvas = document.getElementById('qrcode');
+        QRCode.toCanvas(canvas, details, function (error) {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('QR code successfully generated!');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

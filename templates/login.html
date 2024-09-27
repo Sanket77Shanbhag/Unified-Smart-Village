@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Unified Smart Village Application</title>
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='images/background.jpg') }}'); /* Replace with your background image */
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%; /* Responsive width */
+            max-width: 400px; /* Maximum width */
+            margin: auto;
+            padding: 30px; /* Increased padding for more space */
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin-top: 100px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px); /* Adjusted width to account for padding */
+            padding: 10px; 
+            margin-bottom: 15px; /* Increased bottom margin for spacing */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px; /* Increased top margin for spacing */
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                margin-top: 50px; /* Reduce top margin on smaller screens */
+                padding-left: 15px; /* Add padding for smaller screens */
+                padding-right: 15px; /* Add padding for smaller screens */
+                border-radius: 10px; /* Slightly reduce border radius */
+                box-shadow: none; /* Remove shadow for simplicity */
+                background-color: rgba(0, 0, 0, 0.9); /* Darken background slightly */
+                padding-top: 25px; /* Adjust top padding for smaller screens */
+                padding-bottom: 25px; /* Adjust bottom padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm" action="{{ url_for('login') }}" method="post">
+            <div id="error-message" class="error"></div>
+
+            <label for="aadhar">Aadhar Card Number:</label>
+            <input type="text" id="aadhar" name="aadhar" required aria-required="true" placeholder="Enter your Aadhar Number">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required aria-required="true" placeholder="Enter your Password">
+            
+            <button type="submit">Login</button>
+        </form>
+        
+        <div class="footer">
+            <p>Not registered? <a href="{{ url_for('register') }}">Create an account</a></p>
+            <p><a href="#">Forgot Password?</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Sample user data stored in localStorage for testing purpose
+        if (!localStorage.getItem('user')) {
+            localStorage.setItem('user', JSON.stringify({
+                aadhar: '123456789012',
+                password: 'password123'
+            }));
+        }
+
+        // Function to validate login credentials
+        function validateLogin() {
+            var aadhar = document.getElementById("aadhar").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+
+            // Clear previous error messages
+            errorMessage.innerHTML = "";
+
+            // Get user data from localStorage
+            var storedUser = JSON.parse(localStorage.getItem('user'));
+
+            // Validate Aadhar and password
+            if (storedUser && storedUser.aadhar === aadhar && storedUser.password === password) {
+                alert("Login successful! Redirecting to the dashboard...");
+                window.location.href = "{{ url_for('dashboard') }}";  // Redirect to the dashboard
+                return false;
+            } else {
+                errorMessage.innerHTML = "Invalid Aadhar number or password.";
+                return false;  // Prevent form submission
+            }
+        }
+    </script>
+</body>
+</html>

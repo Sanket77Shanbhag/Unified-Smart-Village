@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Smart Village Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        /* Sidebar */
+        nav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        nav a {
+            padding: 15px 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Section boxes */
+        .section-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .section-box:hover {
+            background-color: #e6f5e6;
+            cursor: pointer;
+        }
+
+        .section-box h2 {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        Unified Smart Village Dashboard
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('documents') }}">Documents</a>
+        <a href="{{ url_for('services') }}">Government Services</a>
+        <a href="{{ url_for('agritech') }}">Agri Tech</a>
+        <a href="{{ url_for('profile') }}">Digital Profile Card</a>
+        <a class="btn" href="#" onclick="logout()">Logout</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome to the Unified Smart Village Dashboard</h1>
+        <p>Click on any section below to explore:</p>
+
+        <div class="section-box" onclick="window.location.href='{{ url_for('documents') }}'">
+            <h2>Documents</h2>
+            <p>Upload and manage your important documents like Aadhar and land records.</p>
+        </div>
+
+        <div class="section-box" onclick="window.location.href='{{ url_for('services') }}'">
+            <h2>Government Services</h2>
+            <p>Explore agricultural government schemes, subsidies, and more.</p>
+        </div>
+
+        <div class="section-box" onclick="window.location.href='{{ url_for('agritech') }}'">
+            <h2>Agri Tech</h2>
+            <p>Access advanced agricultural technologies, projects, and smart tools.</p>
+        </div>
+
+        <div class="section-box" onclick="window.location.href='{{ url_for('profile') }}'">
+            <h2>Digital Profile Card</h2>
+            <p>View your personal details, Aadhar number, and QR code for accessing documents.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Unified Smart Village Application - Empowering Rural Communities
+    </footer>
+
+    <script>
+        function logout() {
+            // Clear session data (if any) stored in localStorage or sessionStorage
+            sessionStorage.clear();
+            localStorage.clear();
+            
+            // Redirect to the main.html page
+            window.location.href = "{{ url_for('main') }}";  // Use Flask's URL routing
+        }
+    </script>
+</body>
+</html>

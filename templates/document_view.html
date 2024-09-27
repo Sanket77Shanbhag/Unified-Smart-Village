@@ -1,0 +1,11 @@
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('userId');
+
+    // Fetch user details and documents (replace with actual logic)
+    fetch(`/api/getUserDocuments?userId=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Display user info and documents
+        });
+</script>

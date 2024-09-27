@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Equipment Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .image-container {
+            margin: 20px;
+            display: inline-block;
+            width: 30%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .image-container {
+                width: 80%; /* Adjust for smaller screens */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .image-container {
+                width: 30%; /* Default width for larger screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agriculture Equipment</h1>
+
+        <div class="image-container">
+            <h2>Wheel Brush Cutting Machine</h2>
+            <img src="static/images/b.jpg" alt="Wheel brush cutting machine used for trimming weeds and foliage">
+            <p>A powered garden or agricultural tool used to trim weeds, small trees, and other foliage not accessible by a lawn mower or rotary mower.</p>
+            <a href="https://youtu.be/20DV8MlEG8M?si=_yKiRcBdf8Ac-Y2I" target="_blank">Watch Video</a>
+        </div>
+
+        <div class="image-container">
+            <h2>Transplanter</h2>
+            <img src="static/images/t.jpg" alt="Transplanter for rice seedlings in paddy fields">
+            <p>Transplanters are machines designed for efficiently transplanting rice seedlings into paddy fields. They automate the process that traditionally requires significant manual labor, ensuring consistent planting depth and spacing.</p>
+            <a href="https://youtu.be/r1xx2F9WOpQ?si=TuI96dIRNb0cxjQ3" target="_blank">Watch Video</a>
+        </div>
+
+        <div class="image-container">
+            <h2>Harvesting Machine</h2>
+            <img src="static/images/h.jpg" alt="Harvesting machine used for various grains">
+            <p>This harvester can harvest any kind of grain. It performs three separate operations comprising harvesting-reaping, threshing, and winnowing into a single process. Owing to the ability to harvest different types of crops, these harvesters are highly demanded.</p>
+            <a href="https://youtu.be/pFrCdDT5lLQ?si=fcVo6Cgz-_cwIKWD" target="_blank">Watch Video</a>
+        </div>
+    </div>
+</body>
+</html>

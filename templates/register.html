@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Unified Smart Village Application</title>
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='images/background.jpg') }}'); /* Use Flask's URL routing */
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%; /* Responsive width */
+            max-width: 400px; /* Maximum width */
+            margin: auto;
+            padding: 30px; /* Increased padding for more space */
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin-top: 100px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px); /* Adjusted width to account for padding */
+            padding: 10px;
+            margin-bottom: 15px; /* Increased bottom margin for spacing */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px; /* Increased top margin for spacing */
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                margin-top: 50px; /* Reduce top margin on smaller screens */
+                padding-left: 15px; /* Add padding for smaller screens */
+                padding-right: 15px; /* Add padding for smaller screens */
+                border-radius: 10px; /* Slightly reduce border radius */
+                box-shadow: none; /* Remove shadow for simplicity */
+                background-color: rgba(0, 0, 0, 0.9); /* Darken background slightly */
+                padding-top: 25px; /* Adjust top padding for smaller screens */
+                padding-bottom: 25px; /* Adjust bottom padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Register</h1>
+        <form id="registerForm" action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
+            <div id="error-message" class="error"></div>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required aria-required="true" placeholder="Enter your Name">
+            
+            <label for="aadhar">Aadhar Card Number:</label>
+            <input type="text" id="aadhar" name="aadhar" required aria-required="true" placeholder="Enter your Aadhar Number">
+            
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" required aria-required="true" placeholder="Enter your Phone Number">
+            
+            <label for="village">Village Name:</label>
+            <input type="text" id="village" name="village" required aria-required="true" placeholder="Enter your Village Name">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required aria-required="true" placeholder="Enter your Password">
+            
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required aria-required="true" placeholder="Confirm your Password">
+            
+            <button type="submit">Register</button>
+        </form>
+        
+        <div class="footer">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Form validation function
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var aadhar = document.getElementById("aadhar").value;
+            var phone = document.getElementById("phone").value;
+            var village = document.getElementById("village").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm-password").value;
+            var errorMessage = document.getElementById("error-message");
+
+            // Clear previous error messages
+            errorMessage.innerHTML = "";
+
+            // Validate Aadhar number (12 digits)
+            var aadharRegex = /^\d{12}$/;
+            if (!aadharRegex.test(aadhar)) {
+                errorMessage.innerHTML = "Aadhar number must be 12 digits.";
+                return false;
+            }
+
+            // Validate phone number (10 digits)
+            var phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                errorMessage.innerHTML = "Phone number must be 10 digits.";
+                return false;
+            }
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                errorMessage.innerHTML = "Passwords do not match.";
+                return false;
+            }
+
+            // All validations passed, proceed to registration
+            alert("Registration successful! Redirecting to login page...");
+            window.location.href = "{{ url_for('login') }}";  // Redirect to the login page using Flask's URL routing
+            return false;
+        }
+    </script>
+</body>
+</html>

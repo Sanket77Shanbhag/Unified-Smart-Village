@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Services - Unified Smart Village</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            background-color: #e6f5e6;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .details {
+            display: none;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-top: 5px;
+            border-left: 5px solid #4CAF50;
+        }
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #e8f5e9;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            color: #3498db;
+        }
+        .apply-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .apply-btn:hover {
+            background-color: #45a049;
+        }
+        /* Grid for dashboard cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Government Services</h1>
+    <p>Click on each service to see the detailed procedure, requirements, and apply for the service:</p>
+
+    <ul>
+        <li onclick="toggleDetails('subsidies')">Agriculture Subsidies</li>
+        <div id="subsidies" class="details">
+            <h4>Procedure:</h4>
+            <p>Farmers must submit an application along with land records to avail subsidies. Application forms can be downloaded from the official agricultural department website or collected from the local office.</p>
+            <h4>Requirements:</h4>
+            <p>Required documents include land ownership papers, Aadhar card, and proof of crop cultivation.</p>
+            <a href="https://nammakpsc.com/affairs/krishi-bhagya-scheme/" target="_blank" class="apply-btn">Apply Now</a>
+        </div>
+
+        <li onclick="toggleDetails('insurance')">Crop Insurance</li>
+        <div id="insurance" class="details">
+            <h4>Procedure:</h4>
+            <p>Farmers need to enroll in the Pradhan Mantri Fasal Bima Yojana through their local agricultural office or online portal.</p>
+            <h4>Requirements:</h4>
+            <p>Land ownership proof, bank account details, and crop details must be submitted.</p>
+            <a href="https://pmfby.gov.in/" target="_blank" class="apply-btn">Apply Now</a>
+        </div>
+
+        <li onclick="toggleDetails('loan')">Loan Assistance</li>
+        <div id="loan" class="details">
+            <h4>Procedure:</h4>
+            <p>Farmers can apply for loans from registered banks under government-approved agricultural loan schemes. Application can be submitted online or at the nearest bank.</p>
+            <h4>Requirements:</h4>
+            <p>Documents required include land records, bank account details, and credit history.</p>
+            <a href="https://www.myscheme.gov.in/schemes/kcc" target="_blank" class="apply-btn">Apply Now</a>
+        </div>
+
+        <li onclick="toggleDetails('fertilizer')">Fertilizer Subsidy</li>
+        <div id="fertilizer" class="details">
+            <h4>Procedure:</h4>
+            <p>Farmers are eligible to receive subsidized fertilizers from authorized centers by submitting valid identification and farming documents.</p>
+            <h4>Requirements:</h4>
+            <p>Aadhar card, land ownership papers, and crop details are required for eligibility.</p>
+            <a href="https://www.fert.nic.in/dbt" target="_blank" class="apply-btn">Apply Now</a>
+        </div>
+    </ul>
+</div>
+
+<!-- Additional Information Section -->
+<div class="container">
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="service-item">
+            <h3>100+</h3>
+            <p>Registered Villages</p>
+        </div>
+        <div class="service-item">
+            <h3>500+</h3>
+            <p>Active Residents</p>
+        </div>
+        <div class="service-item">
+            <h3>200+</h3>
+            <p>Services Delivered</p>
+        </div>
+    </section>
+
+    <!-- Real-Time Alerts -->
+    <section id="alerts" class="grid">
+        <div class="card">
+            <h2>Real-Time Alerts</h2>
+            <p>Monitor urgent alerts for medical, agricultural, and infrastructure emergencies.</p>
+            <ul>
+                <li>Weather Warnings</li>
+                <li>Road Conditions</li>
+                <li>Water Supply Updates</li>
+                <li>Healthcare Alerts</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Service Requests</h2>
+            <p>Review pending service requests from residents related to infrastructure, healthcare, and community support.</p>
+            <ul>
+                <li>Electricity Outage</li>
+                <li>Healthcare Assistance</li>
+                <li>Public Road Repair</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Community Updates -->
+    <section id="community" class="grid">
+        <div class="card">
+            <h2>Community Announcements</h2>
+            <p>Keep the community updated with the latest news and important notices.</p>
+            <ul>
+                <li>Village Council Meeting</li>
+                <li>Farmers’ Training Program</li>
+                <li>Healthcare Camp</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Recent Projects</h2>
+            <p>Track the progress of local government and community projects.</p>
+            <ul>
+                <li>New School Construction</li>
+                <li>Road Expansion</li>
+                <li>Water Management Initiative</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Reports and Insights -->
+    <section id="reports" class="reports">
+        <div class="card">
+            <h2>Monthly Service Report</h2>
+            <p>Analyze the monthly service delivery metrics and community impact.</p>
+            <p><strong>August 2024:</strong></p>
+            <ul>
+                <li>Electricity Issues: 12 Resolved</li>
+                <li>Medical Requests: 5 Attended</li>
+                <li>Road Repairs: 3 Completed</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Data Insights</h2>
+            <p>Utilize data-driven insights to optimize service delivery and anticipate community needs.</p>
+            <ul>
+                <li>Top Requests: Healthcare</li>
+                <li>Usage Trends: Morning Peak</li>
+                <li>Resident Feedback: 85% Satisfaction</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Unified Smart Village Application. All rights reserved.</p>
+</footer>
+
+<script>
+    function toggleDetails(id) {
+        const details = document.querySelectorAll('.details');
+        details.forEach((detail) => {
+            if (detail.id === id) {
+                detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+            } else {
+                detail.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>
