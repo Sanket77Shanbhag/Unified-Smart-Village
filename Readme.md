@@ -62,8 +62,8 @@ The **Unified Smart Village Application System** addresses these challenges by p
 ## How to Use
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Sanket77Shanbhag/UnifiedSmartVillage.git
-   cd UnifiedSmartVillage
+   git clone https://github.com/Sanket77Shanbhag/Unified-Smart-Village.git
+   cd Unified-Smart-Village
    ```
 
 2. **Run the Application**:
